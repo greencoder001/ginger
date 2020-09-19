@@ -1,0 +1,19 @@
+{
+  "name": "ginger",
+  "version": "1.0.0",
+  "description": "Ginger is a Webserver written in node.js (Javascript)",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greencoder001/ginger.git"
+  },
+  "author": "Green_Lab",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/greencoder001/ginger/issues"
+  },
+  "homepage": "https://github.com/greencoder001/ginger#readme"
+}
