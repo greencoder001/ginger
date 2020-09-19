@@ -1,7 +1,5 @@
 // Modules:
 const path = require('path')
-const http = require('http')
-const https = require('https')
 const fs = require('fs')
 
 // Ginger Modules:
@@ -30,5 +28,5 @@ const config = (() => {
 
 // Init Servers:
 for (const server of config.servers) {
-  console.log(new Server(server, dir).listen())
+  console.log(new Server(server, dir).listen() + '\n')
 }
