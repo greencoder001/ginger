@@ -3,10 +3,20 @@
 const path = require('path')
 const random = require('randy')
 
-function parseGingerCode (code, req, res, vars, selfDir) {
+function parseGingerCode (code, req, res, vars, selfDir, url) {
   var gOut = ''
+  const query = (function () {
+    const p = {}
 
-  const gMain = new Function('__gout', '__vars', 'require', 'selfDir', 'random', `
+    for (const entry of url.query.substr(1).split('&')) {
+      const [key, value] = entry.split('=')
+      p[key] = decodeURIComponent(value)
+    }
+
+    return p
+  })()
+
+  const gMain = new Function('__gout', '__vars', 'require', 'selfDir', 'random', 'GET', `
     function echo (...data) {for (const _ of data) {__gout+=\`\${_}\\n\`}}
 
     ;try {${code}} catch (e) {
@@ -21,7 +31,7 @@ function parseGingerCode (code, req, res, vars, selfDir) {
     return [ __gout, __vars ];
   `)
 
-  const gexecd = gMain(gOut, vars, require, selfDir, random)
+  const gexecd = gMain(gOut, vars, require, selfDir, random, query)
 
   gOut = gexecd[0]
   vars = gexecd[1]
@@ -37,7 +47,7 @@ module.exports = (req, res, url, $path, code) => {
   let parsed = code
 
   parsed = parsed.replace(/<%(.*?)%>/igs, (match, gingerCode) => {
-    const pgco = parseGingerCode(gingerCode, req, res, vars, path.parse($path).dir)
+    const pgco = parseGingerCode(gingerCode, req, res, vars, path.parse($path).dir, url)
     vars = pgco.vars
     const { out } = pgco
     return out
