@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ title }}</title>
+</head>
+<body>
+  This is a Ginger Page!
+  <br>
+  <%
+    title = 'Ginger Page'
+    echo('Yeah! I love Ginger!')
+    echo('Nice! We can use ginger to write something to you!')
+  %>
+
+  <%
+    echo(`I can also echo the variable title: ${title}`)
+  %>
+
+  <%
+    // Lets modify a file!
+    fs = require('fs')
+
+    fs.writeFileSync(selfDir + '/my-new-page.html', random.choice([
+      '<h1>Hello World!</h1>',
+      'This is random!',
+      'Yes, its really random',
+      '<h3>I &lt;3 Ginger</h3>'
+    ]))
+  %>
+</body>
+</html>

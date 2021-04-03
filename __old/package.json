@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Ginger is a Webserver written in node.js (Javascript)",
   "main": "main.js",
+  "bin": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,9 +18,9 @@
   },
   "homepage": "https://github.com/greencoder001/ginger#readme",
   "dependencies": {
-    "axios": "^0.21.1",
-    "mime.json": "^1.2.1",
-    "randy": "^1.5.1",
-    "url-parse": "^1.5.1"
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
+    "path": "^0.12.7"
   }
 }
